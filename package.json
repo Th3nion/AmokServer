@@ -1,0 +1,41 @@
+{
+  "name": "AmokServer",
+  "preferGlobal": true,
+  "version": "0.1.0",
+  "author": "Maxime Tournier <contact@maximetournier.com>",
+  "description": "Amok server side",
+  "contributors": [
+    {
+      "name": "Maxime Tournier",
+      "email": "contact@maximetournier.com"
+    }
+  ],
+  "bin": {
+    "http-server": "./bin/amokServer"
+  },
+  "scripts": {
+    "start": "node ./bin/amokServer",
+    "test": "vows --spec --isolate",
+    "predeploy": "Amok will be deployed",
+    "postdeploy": "Amok has been deployed"
+  },
+  "main": "./lib/amokServer",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Th3nion/AmokServer.git"
+  },
+  "keywords": [
+    "amok"
+  ],
+  "dependencies": {},
+  "analyze": false,
+  "devDependencies": {
+    "vows": "0.5.x",
+    "request": "2.1.x"
+  },
+  "bundledDependencies": [],
+  "license": "Apache 2.0",
+  "engines": {
+    "node": ">=0.6"
+  }
+}
