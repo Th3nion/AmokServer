@@ -1,7 +1,17 @@
-# AmokServer
+AmokServer
+======
 
-npm install
+Usefull commands
+------
 
-npm run dev
+To install all libs use:
 
-npm run prod
+```npm install```
+
+To run AmokServer with dev profile:
+
+```npm run dev```
+
+To run AmokServer on production ! :O
+
+```npm run prod```

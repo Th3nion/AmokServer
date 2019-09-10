@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
 
 // Add some require('./PATH/FILE_NAME')
 
-//app.use(require('./routes/index'));
+app.use(require("../routes"));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
