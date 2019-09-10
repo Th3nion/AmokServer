@@ -32,12 +32,21 @@ if (!isProduction) {
 }
 
 // for mongoDB
+
+var options = { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } };
+
 if(isProduction){
-  mongoose.connect(process.env.MONGODB_URI);
+  mongoose.connect(process.env.MONGODB_URI, options);
 } else {
-  // mongoose.connect('mongodb://localhost/conduit');
+  mongoose.connect('mongodb://localhost/amok', options);
   mongoose.set('debug', true);
 }
+
+var db = mongoose.connection; 
+db.on('error', console.error.bind(console, 'Erreur lors de la connexion')); 
+db.once('open', function () {
+    console.log("Connexion à la base OK"); 
+}); 
 
 app.get('/', function (req, res) {
   res.send('Hello World! 3');
