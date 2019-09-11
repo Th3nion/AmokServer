@@ -7,6 +7,10 @@ import bodyParser = require('body-parser');
 import errorhandler = require('errorhandler');
 import mongoose = require('mongoose');
 
+interface Error {
+  status?: number;
+}
+
 var isProduction = process.env.NODE_ENV === "production";
 
 const app: express.Application = express();
