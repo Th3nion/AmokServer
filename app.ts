@@ -6,11 +6,12 @@ import express = require('express');
 import bodyParser = require('body-parser');
 import errorhandler = require('errorhandler');
 import mongoose = require('mongoose');
+import { listeners } from 'cluster';
 
 interface Error {
   status?: number;
 }
-
+require('dotenv').config();
 var isProduction = process.env.NODE_ENV === "production";
 
 const app: express.Application = express();
@@ -37,7 +38,7 @@ if (!isProduction) {
 
 // for mongoDB
 
-var options = { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } };
+var options = { useNewUrlParser: true };
 
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI, options);
@@ -58,6 +59,10 @@ app.get('/', function (req, res) {
 
 // Add some require('./PATH/FILE_NAME')
 require('./models/Monster')
+
+app.get('/bite', function(res) {
+  res.setEncoding("oh oui mords moi");
+});
 
 app.use(require("./routes"));
 
@@ -96,6 +101,6 @@ app.use(function(err, req, res, next) {
 });
 
 // // oh! pretty sure this one launch the server ;)
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Example app listening on port 3000!');
+var listener = app.listen(process.env.PORT || 3000, function () {
+  console.log('Example app listening on port ' + listener.address().port);
 });
