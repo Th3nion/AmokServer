@@ -14,10 +14,9 @@ var monsterSchema = mongoose.Schema({
 
 // Slug transform url to avoid specials characters
 monsterSchema.pre('validate', function (next: any) {
-  if (!slug) {
-    monsterSchema.slugify();
+  if (!this.slug) {
+    this.slugify();
   }
-
   next();
 });
 

@@ -19,11 +19,7 @@ router.get('/monster', auth.optional, function (req, res, next) {
 })
 
 router.put('/monster', auth.optional, function (req, res, next) {
-    var newMonster = new Monster({
-        name: "George",
-        maxLife: 100,
-        slug: "slug"
-    })
+    var newMonster = new Monster(req.body.monster)
     newMonster.save(function (err, results) {
         if (err) {
             res.send(err)
