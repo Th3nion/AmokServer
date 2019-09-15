@@ -11,6 +11,7 @@ import { listeners } from 'cluster';
 interface Error {
   status?: number;
 }
+
 require('dotenv').config();
 var isProduction = process.env.NODE_ENV === "production";
 
@@ -60,10 +61,6 @@ app.get('/', function (req, res) {
 // Add some require('./PATH/FILE_NAME')
 require('./models/Monster')
 
-app.get('/bite', function (res) {
-  res.setEncoding("oh oui mords moi");
-});
-
 app.use(require("./routes"));
 
 /// catch 404 and forward to error handler
@@ -106,5 +103,5 @@ app.use(function (err, req, res, next) {
 
 // // oh! pretty sure this one launch the server ;)
 var listener = app.listen(process.env.PORT || 3000, function () {
-  console.log('Example app listening on port ' + listener.address().port);
+  console.log('listening on port ' + listener.address().port);
 });
