@@ -38,19 +38,19 @@ if (!isProduction) {
 
 // for mongoDB
 
-var options = { useNewUrlParser: true };
+var options = { useNewUrlParser: true, useMongoClient: true };
 
-if(isProduction){
+if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI, options);
 } else {
-  mongoose.connect('mongodb://localhost/amok', options);
+  mongoose.connect('mongodb://127.0.0.1/amok', options);
   mongoose.set('debug', true);
 }
 
-var db = mongoose.connection; 
-db.on('error', console.error.bind(console, 'Erreur lors de la connexion')); 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Erreur lors de la connexion'));
 db.once('open', function () {
-    console.log("Connexion à la base OK"); 
+  console.log("Connexion à la base OK");
 });
 
 app.get('/', function (req, res) {
@@ -60,14 +60,14 @@ app.get('/', function (req, res) {
 // Add some require('./PATH/FILE_NAME')
 require('./models/Monster')
 
-app.get('/bite', function(res) {
+app.get('/bite', function (res) {
   res.setEncoding("oh oui mords moi");
 });
 
 app.use(require("./routes"));
 
 /// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -78,26 +78,30 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (!isProduction) {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     console.log(err.stack);
 
     res.status(err.status || 500);
 
-    res.json({'errors': {
-      message: err.message,
-      error: err
-    }});
+    res.json({
+      'errors': {
+        message: err.message,
+        error: err
+      }
+    });
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
-  res.json({'errors': {
-    message: err.message,
-    error: {}
-  }});
+  res.json({
+    'errors': {
+      message: err.message,
+      error: {}
+    }
+  });
 });
 
 // // oh! pretty sure this one launch the server ;)
