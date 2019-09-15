@@ -43,18 +43,18 @@ var options = { useNewUrlParser: true, useMongoClient: true };
 if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI, options);
 } else {
-  mongoose.connect('mongodb://127.0.0.1/amok', options);
+  mongoose.connect(process.env.MONGODB_URI, options);
   mongoose.set('debug', true);
 }
 
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Erreur lors de la connexion'));
+db.on('error', console.error.bind(console, 'Error whilen connecting to database'));
 db.once('open', function () {
-  console.log("Connexion à la base OK");
+  console.log("Connection to database OK");
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello World! 3');
+  res.send('Maybe you should go elsewhere ?');
 });
 
 // Add some require('./PATH/FILE_NAME')

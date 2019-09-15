@@ -1,0 +1,4 @@
+show dbs
+show collections
+// Add a monster
+db.monsters.insert({name: "George", maxLife: 100})
