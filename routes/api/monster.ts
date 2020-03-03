@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 var Monster = mongoose.model('Monster');
 var auth = require('../auth');
 
-// var Person = mongoose.model('Person', yourSchema);
-
 router.get('/monster', auth.optional, function (req, res, next) {
     Monster.find({}, function (err, monsters) {
         console.log(monsters)
@@ -26,10 +24,6 @@ router.put('/monster', auth.optional, function (req, res, next) {
         }
         res.send(results)
     });
-    // Monster.insert({ name: "Lizzie", maxLife: "75" }, function () {
-    //     res.send("Inserted !")
-    // })
 })
-
 
 module.exports = router;

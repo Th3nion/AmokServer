@@ -35,6 +35,4 @@ monsterSchema.methods.toJSON = function () {
   };
 };
 
-
-
 var Monster = mongoose.model('Monster', monsterSchema);

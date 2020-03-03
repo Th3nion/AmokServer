@@ -60,6 +60,7 @@ app.get('/', function (req, res) {
 
 // Add some require('./PATH/FILE_NAME')
 require('./models/Monster')
+require('./models/City')
 
 app.use(require("./routes"));
 
