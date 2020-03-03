@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Maxime Tournier <contact@maximetournier.com>",
   "description": "Amok server side",
+  "private": true,
   "contributors": [
     {
       "name": "Maxime Tournier",
