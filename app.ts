@@ -103,6 +103,6 @@ app.use(function (err, req, res, next) {
 });
 
 // // oh! pretty sure this one launch the server ;)
-var listener = app.listen(process.env.PORT || 3000, function () {
+let listener = app.listen(process.env.PORT || 3000, function () {
   console.log('listening on port ' + listener.address().port);
 });

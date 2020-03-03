@@ -1,14 +1,12 @@
-var router = require('express').Router();
-var mongoose = require('mongoose');
-var City = mongoose.model('City');
-var auth = require('../auth');
-
-// var Person = mongoose.model('Person', yourSchema);
+let router = require('express').Router();
+let mongoose = require('mongoose');
+let City = mongoose.model('City');
+let auth = require('../auth');
 
 router.get('/city', auth.optional, function (req, res, next) {
     City.find({}, function (err, cities) {
         console.log(cities)
-        var citiesMap = {};
+        let citiesMap = {};
 
         cities.forEach(function (city) {
             citiesMap[city._id] = city;
@@ -18,7 +16,7 @@ router.get('/city', auth.optional, function (req, res, next) {
 })
 
 router.put('/city', auth.optional, function (req, res, next) {
-    var newCity = new Monster(req.body.monster)
+    let newCity = new Monster(req.body.monster)
     newCity.save(function (err, results) {
         if (err) {
             res.send(err)

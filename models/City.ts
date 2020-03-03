@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
-var slug = require('slug');
+let mongoose = require('mongoose');
+let uniqueValidator = require('mongoose-unique-validator');
+let slug = require('slug');
 
 // Schema is the description of the model, we registered it in mongoose
 // With mongoose-unique-validator we can set some properties required and/or unique. awesome !
-var citySchema = mongoose.Schema({
+let citySchema = mongoose.Schema({
     slug: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true, unique: true },
     description: String,
@@ -43,4 +43,4 @@ citySchema.methods.toJSON = function () {
     };
 };
 
-var City = mongoose.model('City', citySchema);
+let City = mongoose.model('City', citySchema);
